@@ -1,0 +1,75 @@
+﻿<Window x:Class="SteveLang.TplVsAsyncAwait.WpfApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="TPL vs async/await" Height="425" Width="525">
+    <Grid>
+        <Grid Margin="10,10,10,10">
+            <StackPanel Orientation="Vertical">
+                <RadioButton Content="Perform long-running calculation on UI thread"
+                             GroupName="RadioButtonGroup1"
+                             IsChecked="{Binding IsOnUiThread, Mode=TwoWay}" />
+                <RadioButton Content="Perform long-running calculation using Task.Factory.StartNew()"
+                             GroupName="RadioButtonGroup1"
+                             IsChecked="{Binding IsUsingTpl, Mode=TwoWay}"
+                             Margin="0,5,0,0" />
+                <RadioButton Content="Perform long-running calculation using async/await"
+                             GroupName="RadioButtonGroup1"
+                             IsChecked="{Binding IsUsingAsyncAwait, Mode=TwoWay}"
+                             Margin="0,5,0,0" />
+                <StackPanel Margin="0,10,0,0"
+                            Orientation="Horizontal">
+                    <Label Content="Multiplier (int; higher takes more time)" />
+                    <TextBox Margin="10,0,0,0"
+                             Text="{Binding Multiplier, Mode=TwoWay}"
+                             Width="50" />
+                </StackPanel>
+                <StackPanel Margin="0,10,0,0"
+                            Orientation="Horizontal">
+                    <Label Content="Divisor (int; enter 0 to trigger exception)" />
+                    <TextBox Margin="10,0,0,0"
+                             Text="{Binding Divisor, Mode=TwoWay}"
+                             Width="50" />
+                </StackPanel>
+                <StackPanel Margin="0,10,0,0"
+                            Orientation="Horizontal">
+                    <Button Click="Run_Click"
+                        Content="Run"
+                        HorizontalAlignment="Left"
+                        IsEnabled="{Binding IsRunEnabled}"
+                        Width="100" />
+                    <Button Click="Cancel_Click"
+                        Content="Cancel"
+                        HorizontalAlignment="Left"
+                        IsEnabled="{Binding IsCancelEnabled}"
+                        Margin="10,0,0,0"
+                        Width="100" />
+                </StackPanel>
+                <StackPanel Margin="0,10,0,0"
+                            Orientation="Horizontal">
+                    <Label Content="Status:" />
+                    <Label Content="{Binding Status}"
+                           FontWeight="Bold" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="UI thread Id:" />
+                    <Label Content="{Binding UiThreadId}"
+                           FontWeight="Bold" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Calculation thread Id:" />
+                    <Label Content="{Binding CalculationThreadId}"
+                           FontWeight="Bold" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="ContinueWith()/post-await thread Id:" />
+                    <Label Content="{Binding ContinueWithOrPostAwaitThreadId}"
+                           FontWeight="Bold" />
+                </StackPanel>
+                <TextBox AcceptsReturn="True"
+                         Height="75"
+                         Margin="0,10,0,0"
+                         Text="Type stuff in here to test UI responsiveness" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
