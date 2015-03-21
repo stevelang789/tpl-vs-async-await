@@ -8,11 +8,11 @@
                 <RadioButton Content="Perform long-running calculation on UI thread"
                              GroupName="RadioButtonGroup1"
                              IsChecked="{Binding IsOnUiThread, Mode=TwoWay}" />
-                <RadioButton Content="Perform long-running calculation using Task.Factory.StartNew()"
+                <RadioButton Content="Perform long-running calculation using Task.Run() and .ContinueWith()"
                              GroupName="RadioButtonGroup1"
                              IsChecked="{Binding IsUsingTpl, Mode=TwoWay}"
                              Margin="0,5,0,0" />
-                <RadioButton Content="Perform long-running calculation using async/await"
+                <RadioButton Content="Perform long-running calculation using Task.Run() and async/await"
                              GroupName="RadioButtonGroup1"
                              IsChecked="{Binding IsUsingAsyncAwait, Mode=TwoWay}"
                              Margin="0,5,0,0" />
